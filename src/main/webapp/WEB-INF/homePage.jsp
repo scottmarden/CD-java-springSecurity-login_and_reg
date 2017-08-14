@@ -11,12 +11,19 @@
 <title>Welcome Page</title>
 </head>
 <body>
-    <h1>Welcome <c:out value="${currentUser.firstName}"></c:out></h1>
+	<div class="header">
+	    <form id="logoutForm" method="POST" action="/logout">
+	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	        <input type="submit" value="Logout!" />
+	    </form>
+		<h1>Welcome <c:out value="${currentUser.firstName}"></c:out></h1>
+		<c:if test="${adminFlag != null}" >
+			<a href="/admin">Admin Dashboard</a>
+		</c:if>    
+	</div>
+
     
-    <form id="logoutForm" method="POST" action="/logout">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input type="submit" value="Logout!" />
-    </form>
+
     
     <p>First Name: <c:out value="${currentUser.firstName}" /></p>
     <p>Last Name: <c:out value="${currentUser.lastName}" /></p>
